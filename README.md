@@ -1,59 +1,204 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# VoiceTrack - ระบบจัดการไฟล์เสียง
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <strong>ระบบจัดการและแชร์ไฟล์เสียงแบบ Web-based</strong>
 </p>
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📋 คำอธิบายโปรเจ็ค
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+VoiceTrack เป็นระบบจัดการไฟล์เสียง (Audio Files) ที่สร้างขึ้นด้วย **Laravel 11** ให้สามารถ:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+✨ **คุณสมบัติหลัก:**
+- 📤 **อัปโหลดไฟล์เสียง** - อัปโหลดไฟล์เสียงจากแบบฟอร์ม
+- 🔍 **ค้นหาไฟล์** - ค้นหาไฟล์เสียงตามรหัสหรือผู้ร้องขอ
+- 📥 **ดาวน์โหลด** - ดาวน์โหลดไฟล์เดี่ยวหรือแบบชุด
+- 🔊 **สตรีมมิ่ง** - ฟังไฟล์เสียงผ่าน Browser
+- 📅 **วันหมดอายุ** - กำหนดวันหมดอายุสำหรับไฟล์
+- 👨‍💼 **ระบบ Admin** - จัดการไฟล์และผู้ใช้
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🛠️ เทคโนโลยีที่ใช้
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend:** Laravel 11
+- **Frontend:** Blade Templates, JavaScript, Vite
+- **Database:** MySQL
+- **Server:** Nginx
+- **Docker:** Docker & Docker Compose (สำหรับการพัฒนา)
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 📦 โครงสร้างฐานข้อมูล
 
-### Premium Partners
+### 👥 Users
+- ระบบผู้ใช้งานทั่วไป
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 🔐 Admins
+- `username` - ชื่อผู้ใช้ (สำหรับ login admin)
+- `password` - รหัสผ่าน (เข้ารหัส)
 
-## Contributing
+### 🎵 Files
+- `code` - รหัสไฟล์ (สำหรับค้นหา)
+- `filename` - ชื่อไฟล์เสียง
+- `requester` - ชื่อผู้ร้องขอ
+- `expiry_date` - วันหมดอายุ
+- `uploaded_at` - วันที่อัปโหลด
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 🚀 การ Setup และการรัน
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### วิธี 1: ใช้ Docker (แนะนำ)
 
-## Security Vulnerabilities
+ดูรายละเอียดใน [DOCKER-README.md](DOCKER-README.md)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+docker-compose up -d --build
+docker-compose exec app php artisan migrate --seed
+```
 
-## License
+### วิธี 2: รันบนเครื่องท้องถิ่น
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### ข้อกำหนด:
+- PHP 8.2 ขึ้นไป
+- Composer
+- MySQL / SQLite
+
+#### ขั้นตอน:
+
+1. **ติดตั้ง Dependencies:**
+```bash
+composer install
+npm install
+```
+
+2. **ตั้งค่า Environment:**
+```bash
+copy .env.example .env
+php artisan key:generate
+```
+
+3. **ตั้งค่าฐานข้อมูล:**
+```bash
+php artisan migrate --seed
+```
+
+4. **รัน Development Server:**
+```bash
+php artisan serve
+npm run dev
+```
+
+5. **เข้าใช้งาน:**
+- 🏠 ไซต์หลัก: http://localhost:8000
+- 🔒 Admin Login: http://localhost:8000/login
+
+---
+
+## 🔑 Credentials เริ่มต้น
+
+**Admin User (หลังจากรัน seed):**
+- Username: `admin`
+- Password: `password`
+
+---
+
+## 📁 โครงสร้างโฟลเดอร์
+
+```
+laravel-voictrack/
+├── app/
+│   ├── Http/Controllers/      # Controller (PublicController, AdminController, AuthController)
+│   └── Models/                # Eloquent Models (User, Admin, File)
+├── database/
+│   ├── migrations/            # Database Schema
+│   └── seeders/               # Database Seeders
+├── resources/
+│   ├── views/                 # Blade Templates
+│   ├── css/                   # Stylesheets
+│   └── js/                    # JavaScript
+├── routes/                    # Route Definitions
+├── storage/
+│   └── app/uploads/           # โฟลเดอร์เก็บไฟล์เสียง
+└── tests/                     # Unit & Feature Tests
+```
+
+---
+
+## 🛣️ Routes (เส้นทาง)
+
+### Public Routes:
+- `GET /` - หน้าแรก (ค้นหาและดาวน์โหลด)
+- `POST /search` - ค้นหาไฟล์
+- `GET /download/{id}` - ดาวน์โหลดไฟล์เดี่ยว
+- `GET /download-all/{code}` - ดาวน์โหลดไฟล์แบบชุด
+- `GET /stream/{id}` - สตรีมมิ่งไฟล์เสียง
+
+### Authentication Routes:
+- `GET /login` - ฟอร์ม Login
+- `POST /login` - ยืนยัน Login
+- `POST /logout` - ออกจากระบบ
+
+### Admin Routes (ต้องเข้าสู่ระบบ):
+- `GET /admin/dashboard` - แดชบอร์ด Admin
+- `POST /admin/upload` - อัปโหลดไฟล์
+- `DELETE /admin/delete/{id}` - ลบไฟล์เดี่ยว
+- `POST /admin/delete-all` - ลบไฟล์หลายรายการ
+
+---
+
+## 🧪 Testing
+
+รัน Unit Tests:
+```bash
+php artisan test
+```
+
+---
+
+## 📝 Seeders
+
+### AdminSeeder
+```bash
+php artisan db:seed --class=AdminSeeder
+```
+สร้าง Admin User เริ่มต้น (username: `admin`, password: `password`)
+
+### MigrateOldDataSeeder
+```bash
+php artisan db:seed --class=MigrateOldDataSeeder
+```
+โอนย้ายข้อมูลเก่าจากระบบเดิม
+
+---
+
+## 🐛 Troubleshooting
+
+### ปัญหา: ไม่สามารถเข้าสู่ระบบได้
+```bash
+# Reset ฐานข้อมูล
+php artisan migrate:refresh --seed
+```
+
+### ปัญหา: ไม่เห็นไฟล์อัปโหลด
+ตรวจสอบสิทธิ์ของโฟลเดอร์:
+```bash
+chmod -R 775 storage/
+```
+
+### Docker ไม่ทำงาน
+ดูรายละเอียดเพิ่มเติมใน [DOCKER-QUICKSTART.md](DOCKER-QUICKSTART.md)
+
+---
+
+## 📞 ติดต่อและสนับสนุน
+
+สำหรับปัญหาการใช้งาน โปรดติดต่อทีมพัฒนา
+
+---
+
+## 📄 License
+
+MIT License - เปิดเผยให้ใช้งานอย่างอิสระ
