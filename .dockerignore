@@ -1,0 +1,14 @@
+.git
+.gitignore
+.env.example
+node_modules
+vendor
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+bootstrap/cache/*
+.phpunit.result.cache
+phpunit.xml
+.DS_Store
+Thumbs.db

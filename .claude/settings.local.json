@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php -v:*)",
+      "Bash(E:xamppphpphp.exe artisan route:list)",
+      "Bash(/e/xampp/php/php.exe artisan route:list:*)",
+      "Bash(/e/xampp/php/php.exe artisan config:cache)",
+      "Bash(/e/xampp/php/php.exe artisan:*)"
+    ]
+  }
+}
